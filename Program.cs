@@ -26,6 +26,7 @@ namespace SeleniumCSharp
             //Perform Operation
             element.SendKeys("selenium with C#");
 
+            //search for keywords in google by hitting enter command
             element.SendKeys(Keys.Enter);
         }
     }
