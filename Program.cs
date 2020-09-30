@@ -27,6 +27,8 @@ namespace SeleniumCSharp
                 driver.Navigate().GoToUrl("https://www.google.com/");
 
                 driver.Manage().Window.Maximize();
+
+            Console.WriteLine("Opened and maximized google webpage.");
             }
 
             [Test]
@@ -40,6 +42,8 @@ namespace SeleniumCSharp
 
                 //search for keywords in google by hitting 'enter' command
                 element.SendKeys(Keys.Enter);
+
+            Console.WriteLine("The test is executed.");
             }
 
             [TearDown]
@@ -47,6 +51,8 @@ namespace SeleniumCSharp
             {
                 Thread.Sleep(2000);
                 driver.Close();
+
+            Console.WriteLine("The last opened browser is closed.");
             }       
     }
 }
