@@ -46,6 +46,15 @@ namespace SeleniumCSharp
             Console.WriteLine("The test is executed.");
             }
 
+            
+            [Test]
+            public void NextTest()
+            {
+            Console.WriteLine("The Next second test is executed.");
+            }
+
+
+
             [TearDown]
             public void CleanUp()
             {
