@@ -24,37 +24,30 @@ namespace SeleniumCSharp
              public void Initialize()
             {
                 //Navigate to Google Page
-                driver.Navigate().GoToUrl("https://www.google.com/");
+                driver.Navigate().GoToUrl("https://demosite.executeautomation.com/index.html?UserName=&Password=&Login=Login");
 
                 driver.Manage().Window.Maximize();
 
-            Console.WriteLine("Opened and maximized google webpage.");
+                Console.WriteLine("Opened and maximized execute automation selenium test site webpage.");
             }
 
             [Test]
             public void ExecuteTest()
             {
-                //Find the Element
-                IWebElement element = driver.FindElement(By.Name("q"));
+            //Title
+            SeleniumSetMethods.SelectDropDown(driver, "id", "TitleId", "Mr.");
 
-                //Perform Operation
-                element.SendKeys("selenium with C#");
+            //Initial
+            SeleniumSetMethods.EnterText(driver, "id", "Initial", "BP");
 
-                //search for keywords in google by hitting 'enter' command
-                element.SendKeys(Keys.Enter);
+            //Save
+            SeleniumSetMethods.Click(driver, "name", "Save");
 
             Console.WriteLine("The test is executed.");
             }
 
             
-            [Test]
-            public void NextTest()
-            {
-            Console.WriteLine("The Next second test is executed.");
-            }
-
-
-
+           
             [TearDown]
             public void CleanUp()
             {
