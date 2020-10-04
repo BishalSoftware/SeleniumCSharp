@@ -31,11 +31,15 @@ namespace SeleniumCSharp
                 driver.FindElement(By.Name(element)).SendKeys(value);
         }
 
+       
         //Click into a button, Checkbox, option etc.
         public static void Click(IWebDriver driver, string elementtype, string element)
         {
             if (elementtype == "name" && element == "Save")
+            {
                 driver.FindElement(By.Name(element)).Click();
+                Console.WriteLine("Save button is clicked by selenium automation");
+            }
             else
                 Console.WriteLine("Save button is not clicked"); 
         }
