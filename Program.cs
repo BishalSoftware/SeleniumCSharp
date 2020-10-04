@@ -43,6 +43,15 @@ namespace SeleniumCSharp
             //Save
             SeleniumSetMethods.Click(driver, "name", "Save");
 
+            //Getter for Title
+            Console.WriteLine("The value from Title is: " + SeleniumGetMethods.GetSelectedDropDown(driver, "id", "TitleId"));
+
+            //Getter for Initial
+            Console.WriteLine("The value from Initial is: " + SeleniumGetMethods.GetText(driver, "id", "Initial"));
+
+
+
+            //logging
             Console.WriteLine("The test is executed.");
             }
 
