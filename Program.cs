@@ -13,55 +13,52 @@ namespace SeleniumCSharp
 {
     class Program
     {
-        //Create the reference for our browser
-        IWebDriver driver = new ChromeDriver();
-
         static void Main(string[] args)
         {
         }
 
             [SetUp]
              public void Initialize()
-            {
-                //Navigate to Google Page
-                driver.Navigate().GoToUrl("https://demosite.executeautomation.com/index.html?UserName=&Password=&Login=Login");
+             {
+             PropertiesCollection.driver = new ChromeDriver();
 
-                driver.Manage().Window.Maximize();
+             //Navigate to Google Page
+             PropertiesCollection.driver.Navigate().GoToUrl("https://demosite.executeautomation.com/index.html?UserName=&Password=&Login=Login");
 
-                Console.WriteLine("Opened and maximized execute automation selenium test site webpage.");
-            }
+             PropertiesCollection.driver.Manage().Window.Maximize();
+
+             Console.WriteLine("Opened and maximized execute automation selenium test site webpage.");
+             }
 
             [Test]
             public void ExecuteTest()
             {
             //Title
-            SeleniumSetMethods.SelectDropDown(driver, "id", "TitleId", "Mr.");
+            SeleniumSetMethods.SelectDropDown(PropertyType.id, "TitleId", "Mr.");
 
             //Initial
-            SeleniumSetMethods.EnterText(driver, "id", "Initial", "BP");
+            SeleniumSetMethods.EnterText(PropertyType.id, "Initial", "BP");
 
             //Save
-            SeleniumSetMethods.Click(driver, "name", "Save");
+            SeleniumSetMethods.Click(PropertyType.name, "Save");
 
             //Getter for Title
-            Console.WriteLine("The value from Title is: " + SeleniumGetMethods.GetSelectedDropDown(driver, "id", "TitleId"));
+            Console.WriteLine("The value from Title is: " + SeleniumGetMethods.GetSelectedDropDown(PropertyType.id, "TitleId"));
 
             //Getter for Initial
-            Console.WriteLine("The value from Initial is: " + SeleniumGetMethods.GetText(driver, "id", "Initial"));
+            Console.WriteLine("The value from Initial is: " + SeleniumGetMethods.GetText(PropertyType.id, "Initial"));
 
-
-
+            
             //logging
             Console.WriteLine("The test is executed.");
             }
 
-            
-           
+                 
             [TearDown]
             public void CleanUp()
             {
                 Thread.Sleep(2000);
-                driver.Close();
+            PropertiesCollection.driver.Close();
 
             Console.WriteLine("The last opened browser is closed.");
             }       
