@@ -22,8 +22,8 @@ namespace SeleniumCSharp
              {
              PropertiesCollection.driver = new ChromeDriver();
 
-             //Navigate to Google Page
-             PropertiesCollection.driver.Navigate().GoToUrl("https://demosite.executeautomation.com/index.html?UserName=&Password=&Login=Login");
+             //Navigate to execute automation Page
+             PropertiesCollection.driver.Navigate().GoToUrl("https://demosite.executeautomation.com/Login.html");
 
              PropertiesCollection.driver.Manage().Window.Maximize();
 
@@ -34,16 +34,12 @@ namespace SeleniumCSharp
         [Obsolete]
         public void ExecuteTest()
             {
+            //Login to Application
+            LoginPageObject pageLogin = new LoginPageObject();
+            EAPageObject pageEA =   pageLogin.Login("execute", "password_automation");
 
-            //Initialize the page by calling its reference
-            EAPageObject page = new EAPageObject();
-
-          //  page.ddlTitleID.("Mr.");
-
-            page.txtInitial.SendKeys("BP");
-
-            page.btnSave.Click();
-
+            pageEA.FillUserForm("BP", "Bishal", "Programmer");
+            
             //logging
             Console.WriteLine("The test is executed.");
 
