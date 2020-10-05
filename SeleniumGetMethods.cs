@@ -12,25 +12,25 @@ namespace SeleniumCSharp
     {
 
         //Get Text from Title
-        public static string GetSelectedDropDown(IWebDriver driver, string elementtype, string element)
+        public static string GetSelectedDropDown(PropertyType elementtype, string element)
         {
-            if (elementtype == "id")
-                return new SelectElement(driver.FindElement(By.Id(element))).AllSelectedOptions.SingleOrDefault().Text;
-            if (elementtype == "name")
-                return new SelectElement(driver.FindElement(By.Name(element))).AllSelectedOptions.SingleOrDefault().Text;
-            else return String.Empty;
+            if (elementtype == PropertyType.id)
+                return new SelectElement(PropertiesCollection.driver.FindElement(By.Id(element))).AllSelectedOptions.SingleOrDefault().Text;
+            if (elementtype == PropertyType.name)
+                return new SelectElement(PropertiesCollection.driver.FindElement(By.Name(element))).AllSelectedOptions.SingleOrDefault().Text;
+            else
+                return String.Empty;
         }
 
         //Get Text from Initial
-        public static string GetText(IWebDriver driver, string elementtype, string element)
+        public static string GetText(PropertyType elementtype, string element)
         {
-            if (elementtype == "id")
-                return driver.FindElement(By.Id(element)).GetAttribute("value"); 
-            if (elementtype == "name")
-                return driver.FindElement(By.Name(element)).GetAttribute("value");
-            else return String.Empty;
+            if (elementtype == PropertyType.id)
+                return PropertiesCollection.driver.FindElement(By.Id(element)).GetAttribute("value");
+            if (elementtype == PropertyType.name)
+                return PropertiesCollection.driver.FindElement(By.Name(element)).GetAttribute("value");
+            else
+                return String.Empty;
         }
     }
-
-
 }
