@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Policy;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SeleniumCSharp
@@ -18,15 +19,6 @@ namespace SeleniumCSharp
             PageFactory.InitElements(PropertiesCollection.driver, this);
         }
 
-        /*
-        [FindsBy(How = How.Id, Using = "TitleId")]
-        public IWebElement ddlTitleID
-        {
-            set;
-            get;
-        }
-        */
-
         [FindsBy(How = How.Id, Using = "Initial")]
         public IWebElement txtInitial
         {
@@ -34,11 +26,34 @@ namespace SeleniumCSharp
            set;
         }
 
+        [FindsBy(How = How.Id, Using = "FirstName")]
+        public IWebElement txtFirstName
+        {
+            set;
+            get;
+        }
+
+        [FindsBy(How = How.Id, Using = "MiddleName")]
+        public IWebElement txtMiddleName
+        {
+            set;
+            get;
+        }
+
         [FindsBy(How = How.Name, Using ="Save")]
         public IWebElement btnSave
         {
             get;
             set;
+        }
+
+        public void FillUserForm(string initial, string firstName, string middleName)
+        {
+            txtInitial.SendKeys(initial);
+            txtFirstName.SendKeys(firstName);
+            txtMiddleName.SendKeys(middleName);
+            Thread.Sleep(7000);
+            btnSave.Click();
         }
     }
 }
