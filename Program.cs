@@ -31,33 +31,45 @@ namespace SeleniumCSharp
              }
 
             [Test]
-            public void ExecuteTest()
+        [Obsolete]
+        public void ExecuteTest()
             {
-            //Title
+
+            //Initialize the page by calling its reference
+            EAPageObject page = new EAPageObject();
+
+          //  page.ddlTitleID.("Mr.");
+
+            page.txtInitial.SendKeys("BP");
+
+            page.btnSave.Click();
+
+            //logging
+            Console.WriteLine("The test is executed.");
+
+            /*
+            //Setter for Title
             SeleniumSetMethods.SelectDropDown(PropertyType.id, "TitleId", "Mr.");
 
-            //Initial
+            //Setter for Initial
             SeleniumSetMethods.EnterText(PropertyType.id, "Initial", "BP");
 
-            //Save
+            //Setter for Save
             SeleniumSetMethods.Click(PropertyType.name, "Save");
 
             //Getter for Title
             Console.WriteLine("The value from Title is: " + SeleniumGetMethods.GetSelectedDropDown(PropertyType.id, "TitleId"));
 
             //Getter for Initial
-            Console.WriteLine("The value from Initial is: " + SeleniumGetMethods.GetText(PropertyType.id, "Initial"));
-
-            
-            //logging
-            Console.WriteLine("The test is executed.");
-            }
+            Console.WriteLine("The value from Initial is: " + SeleniumGetMethods.GetText(PropertyType.id, "Initial"));              
+            */
+        }
 
                  
             [TearDown]
             public void CleanUp()
             {
-                Thread.Sleep(2000);
+                Thread.Sleep(7000);
             PropertiesCollection.driver.Close();
 
             Console.WriteLine("The last opened browser is closed.");

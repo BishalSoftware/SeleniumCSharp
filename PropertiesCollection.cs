@@ -19,13 +19,11 @@ namespace SeleniumCSharp
 
     class PropertiesCollection
     {
-        
-
         //Auto-implemented Property
         public static IWebDriver driver
         {
             get;
-            set;
+            set;             
         }
     }
 }
