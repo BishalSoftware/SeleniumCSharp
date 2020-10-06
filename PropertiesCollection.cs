@@ -23,7 +23,7 @@ namespace SeleniumCSharp
         public static IWebDriver driver
         {
             get;
-            set;             
+            set;
         }
     }
 }
