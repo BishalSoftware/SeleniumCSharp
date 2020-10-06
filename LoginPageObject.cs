@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Remote;
 using OpenQA.Selenium.Support.PageObjects;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,18 @@ namespace SeleniumCSharp
 {
     class LoginPageObject
     {
+        private readonly RemoteWebDriver _driver1;
+
+        public LoginPageObject(RemoteWebDriver driver1) => _driver1 = driver1;
+
+        IWebElement txtUserN => _driver1.FindElementByName("UserName");
+
+        IWebElement txtPass => _driver1.FindElementByName("Password");
+
+        IWebElement btnLog => _driver1.FindElementByName("Login");
+
+
+        /*
         [Obsolete]
         public LoginPageObject()
         {
@@ -18,46 +31,44 @@ namespace SeleniumCSharp
         }
 
         [FindsBy(How = How.Name, Using = "UserName")]
-        public IWebElement txtUserName
+        public IWebElement txtUserN
         {
             get;
             set;
         }
 
         [FindsBy(How = How.Name, Using = "Password")]
-        public IWebElement txtPassowrd
+        public IWebElement txtPass
         {
             get;
             set;
         }
 
         [FindsBy(How = How.Name, Using = "Login")]
-        public IWebElement btnLogin
+        public IWebElement btnLog
         {
             get;
             set;
         }
+        */
+
 
         [Obsolete]
         public EAPageObject Login(string userName, string password)
         {
             //UserName
-            txtUserName.SendKeys(userName);
+            txtUserN.SendKeys(userName);
 
             //Password
-            txtPassowrd.SendKeys(password);
+            txtPass.SendKeys(password);
 
             Thread.Sleep(7000);
 
             //Click Button
-            btnLogin.Submit();
-
+            btnLog.Submit();
 
             //Return the page object
-            return new EAPageObject();
+            return new EAPageObject(_driver1);
         }
-
-
-
     }
 }
