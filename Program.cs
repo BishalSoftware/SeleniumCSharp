@@ -47,6 +47,8 @@ namespace SeleniumCSharp
         public void ExecuteTest()
         {
             //Login to Application
+
+            //LoginPageObject pageLogin = new LoginPageObject();
             LoginPageObject pageLogin = new LoginPageObject(driver);
 
             EAPageObject pageEA = pageLogin.Login("execute", "pass_auto");
@@ -55,30 +57,18 @@ namespace SeleniumCSharp
 
             //logging
             Console.WriteLine("The test is executed.");
-
-            /*
-            //Setter for Title
-            SeleniumSetMethods.SelectDropDown(PropertyType.id, "TitleId", "Mr.");
-            //Setter for Initial
-            SeleniumSetMethods.EnterText(PropertyType.id, "Initial", "BP");
-            //Setter for Save
-            SeleniumSetMethods.Click(PropertyType.name, "Save");
-            //Getter for Title
-            Console.WriteLine("The value from Title is: " + SeleniumGetMethods.GetSelectedDropDown(PropertyType.id, "TitleId"));
-            //Getter for Initial
-            Console.WriteLine("The value from Initial is: " + SeleniumGetMethods.GetText(PropertyType.id, "Initial"));              
-            */
         }
 
 
         [TearDown]
         public void CleanUp()
         {
-            Thread.Sleep(7000);
-            driver.Close();
-            Console.WriteLine("The last opened browser is closed.");
+            Thread.Sleep(5000);
 
-            // PropertiesCollection.driver.Close();
+            //PropertiesCollection.driver.Quit();
+            driver.Quit();
+
+            Console.WriteLine("The last opened browser is closed.");
         }
     }
 }

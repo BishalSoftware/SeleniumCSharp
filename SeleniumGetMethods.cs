@@ -10,27 +10,16 @@ namespace SeleniumCSharp
 {
     class SeleniumGetMethods
     {
-
         //Get Text from Title
-        public static string GetSelectedDropDown(PropertyType elementtype, string element)
+        public static string GetSelectedDropDown(IWebElement element)
         {
-            if (elementtype == PropertyType.id)
-                return new SelectElement(PropertiesCollection.driver.FindElement(By.Id(element))).AllSelectedOptions.SingleOrDefault().Text;
-            if (elementtype == PropertyType.name)
-                return new SelectElement(PropertiesCollection.driver.FindElement(By.Name(element))).AllSelectedOptions.SingleOrDefault().Text;
-            else
-                return String.Empty;
+            return new SelectElement(element).AllSelectedOptions.SingleOrDefault().Text;
         }
 
-        //Get Text from Initial
-        public static string GetText(PropertyType elementtype, string element)
+        //Get Text from Initial, First Name, Middle Name etc.
+        public static string GetText(IWebElement element)
         {
-            if (elementtype == PropertyType.id)
-                return PropertiesCollection.driver.FindElement(By.Id(element)).GetAttribute("value");
-            if (elementtype == PropertyType.name)
-                return PropertiesCollection.driver.FindElement(By.Name(element)).GetAttribute("value");
-            else
-                return String.Empty;
+            return element.GetAttribute("value");
         }
     }
 }
