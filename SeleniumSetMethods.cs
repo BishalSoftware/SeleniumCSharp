@@ -12,35 +12,32 @@ namespace SeleniumCSharp
     class SeleniumSetMethods
     {
         //Selecting a drop down control for Title
-        public static void SelectDropDown(PropertyType elementtype, string element, string value)
+        public static void SelectDropDown(IWebElement element, string value)
         {
-            if (elementtype == PropertyType.id)
-                new SelectElement(PropertiesCollection.driver.FindElement(By.Id(element))).SelectByText(value);
-            if (elementtype == PropertyType.name)
-                new SelectElement(PropertiesCollection.driver.FindElement(By.Name(element))).SelectByText(value);
+            new SelectElement(element).SelectByText(value);
         }
 
 
-        //Enter Text for Initial
-        public static void EnterText(PropertyType elementtype, string element, string value)
+        //Enter Text for Initial, First name and Middle Name
+        public static void EnterText(IWebElement element, string value)
         {
-            if (elementtype == PropertyType.id)
-                PropertiesCollection.driver.FindElement(By.Id(element)).SendKeys(value);
-            if (elementtype == PropertyType.name)
-                PropertiesCollection.driver.FindElement(By.Name(element)).SendKeys(value);
+            element.SendKeys(value);
         }
 
+
+        //Submitting a button
+        public static void Submit(IWebElement element)
+        {
+            element.Submit();
+            Console.WriteLine("Login button is submitted by selenium automation");
+        }
 
         //Click into a button, Checkbox, option etc.
-        public static void Click(PropertyType elementtype, string element)
+        public static void Click(IWebElement element)
         {
-            if (elementtype == PropertyType.name && element == "Save")
-            {
-                PropertiesCollection.driver.FindElement(By.Name(element)).Click();
-                Console.WriteLine("Save button is clicked by selenium automation");
-            }
-            else
-                Console.WriteLine("Save button is not clicked");
+            element.Click();
+            Console.WriteLine("Save button is clicked by selenium automation");
         }
+
     }
 }

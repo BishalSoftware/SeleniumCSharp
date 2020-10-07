@@ -52,23 +52,35 @@ namespace SeleniumCSharp
         }
         */
 
-
         [Obsolete]
         public EAPageObject Login(string userName, string password)
+
         {
+            SeleniumSetMethods.EnterText(txtUserN, userName);
+            SeleniumSetMethods.EnterText(txtPass, password);
+
+            Console.WriteLine("The User Name is : " + SeleniumGetMethods.GetText(txtUserN));
+            Console.WriteLine("The Password is : " + SeleniumGetMethods.GetText(txtPass));
+
+            Thread.Sleep(5000);
+            SeleniumSetMethods.Submit(btnLog);
+            Thread.Sleep(5000);
+
+            /*
             //UserName
             txtUserN.SendKeys(userName);
-
             //Password
             txtPass.SendKeys(password);
-
             Thread.Sleep(7000);
-
             //Click Button
             btnLog.Submit();
+            */
 
             //Return the page object
+
+            //return new EAPageObject();
             return new EAPageObject(_driver1);
         }
+
     }
 }
