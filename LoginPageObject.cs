@@ -23,39 +23,22 @@ namespace SeleniumCSharp
         IWebElement btnLog => _driver1.FindElementByName("Login");
 
 
-        /*
-        [Obsolete]
-        public LoginPageObject()
-        {
-            PageFactory.InitElements(PropertiesCollection.driver, this);
-        }
-
-        [FindsBy(How = How.Name, Using = "UserName")]
-        public IWebElement txtUserN
-        {
-            get;
-            set;
-        }
-
-        [FindsBy(How = How.Name, Using = "Password")]
-        public IWebElement txtPass
-        {
-            get;
-            set;
-        }
-
-        [FindsBy(How = How.Name, Using = "Login")]
-        public IWebElement btnLog
-        {
-            get;
-            set;
-        }
-        */
-
         [Obsolete]
         public EAPageObject Login(string userName, string password)
-
         {
+            //Setter
+            txtUserN.EnterText(userName);
+            txtPass.EnterText(password);
+
+            //Getter
+            Console.WriteLine("Using extension method,the User Name is : " + txtUserN.GetText());
+            Console.WriteLine("Using extension method, the Password is : " + txtPass.GetText());
+
+            Thread.Sleep(5000);
+            btnLog.SubmitExt();
+            Thread.Sleep(5000);
+
+            /*
             SeleniumSetMethods.EnterText(txtUserN, userName);
             SeleniumSetMethods.EnterText(txtPass, password);
 
@@ -65,22 +48,10 @@ namespace SeleniumCSharp
             Thread.Sleep(5000);
             SeleniumSetMethods.Submit(btnLog);
             Thread.Sleep(5000);
-
-            /*
-            //UserName
-            txtUserN.SendKeys(userName);
-            //Password
-            txtPass.SendKeys(password);
-            Thread.Sleep(7000);
-            //Click Button
-            btnLog.Submit();
             */
 
             //Return the page object
-
-            //return new EAPageObject();
             return new EAPageObject(_driver1);
         }
-
     }
 }

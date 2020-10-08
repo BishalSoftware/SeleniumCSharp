@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SeleniumCSharp
 {
-    class SeleniumSetMethods
+    public static class SeleniumSetMethods
     {
         //Selecting a drop down control for Title
         public static void SelectDropDown(IWebElement element, string value)
@@ -17,27 +17,27 @@ namespace SeleniumCSharp
             new SelectElement(element).SelectByText(value);
         }
 
-
         //Enter Text for Initial, First name and Middle Name
-        public static void EnterText(IWebElement element, string value)
+        //Extended method for entering text in the control ('this' IWebElement )
+        public static void EnterText(this IWebElement element, string value)
         {
             element.SendKeys(value);
         }
 
-
         //Submitting a button
-        public static void Submit(IWebElement element)
+        //Extended method for entering text in the control ('this' IWebElement )
+        public static void SubmitExt(this IWebElement element)
         {
             element.Submit();
             Console.WriteLine("Login button is submitted by selenium automation");
         }
 
         //Click into a button, Checkbox, option etc.
-        public static void Click(IWebElement element)
+        //Extended method for entering text in the control ('this' IWebElement )
+        public static void ClickExt(this IWebElement element)
         {
             element.Click();
             Console.WriteLine("Save button is clicked by selenium automation");
         }
-
     }
 }
