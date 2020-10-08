@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SeleniumCSharp
 {
-    class SeleniumGetMethods
+    public static class SeleniumGetMethods
     {
         //Get Text from Title
         public static string GetSelectedDropDown(IWebElement element)
@@ -17,7 +17,8 @@ namespace SeleniumCSharp
         }
 
         //Get Text from Initial, First Name, Middle Name etc.
-        public static string GetText(IWebElement element)
+        //Extended method for entering text in the control ('this' IWebElement )
+        public static string GetText(this IWebElement element)
         {
             return element.GetAttribute("value");
         }

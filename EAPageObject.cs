@@ -13,7 +13,6 @@ namespace SeleniumCSharp
 {
     class EAPageObject
     {
-
         private readonly RemoteWebDriver _driver2;
 
         public EAPageObject(RemoteWebDriver driver2) => _driver2 = driver2;
@@ -25,45 +24,23 @@ namespace SeleniumCSharp
         IWebElement txtMiddleName => _driver2.FindElementById("MiddleName");
 
         IWebElement btnSave => _driver2.FindElementByName("Save");
-
-        /*
-         [Obsolete]
-         public EAPageObject()
-         {
-             PageFactory.InitElements(PropertiesCollection.driver, this);
-         }
-
-         [FindsBy(How = How.Id, Using = "Initial")]
-         public IWebElement txtInitial
-         {
-             get;
-             set;
-         }
-
-         [FindsBy(How = How.Id, Using = "FirstName")]
-         public IWebElement txtFirstName
-         {
-             get;
-             set;
-         }
-
-         [FindsBy(How = How.Id, Using = "MiddleName")]
-         public IWebElement txtMiddleName
-         {
-             get;
-             set;
-         }
-
-         [FindsBy(How = How.Name, Using = "Save")]
-         public IWebElement btnSave
-         {
-             get;
-             set;
-         }
-         */
-
+        
         public void FillUserForm(string initial, string firstName, string middleName)
         {
+            //Setter
+            txtInitial.EnterText(initial);
+            txtFirstName.EnterText(firstName);
+            txtMiddleName.EnterText(middleName);
+
+            //Getter
+            Console.WriteLine("Using extension method,the Initial is : " + txtInitial.GetText());
+            Console.WriteLine("Using extension method,the First Name is : " + txtFirstName.GetText());
+            Console.WriteLine("Using extension method,the Middle Name is  : " + txtMiddleName.GetText());
+
+            Thread.Sleep(5000);
+            btnSave.ClickExt();
+
+            /*
             SeleniumSetMethods.EnterText(txtInitial, initial);
             SeleniumSetMethods.EnterText(txtFirstName, firstName);
             SeleniumSetMethods.EnterText(txtMiddleName, middleName);
@@ -74,13 +51,6 @@ namespace SeleniumCSharp
 
             Thread.Sleep(5000);
             SeleniumSetMethods.Click(btnSave);
-
-            /*
-            txtInitial.SendKeys(initial);
-            txtFirstName.SendKeys(firstName);
-            txtMiddleName.SendKeys(middleName);
-            Thread.Sleep(5000);
-            btnSave.Click();
             */
         }
     }

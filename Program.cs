@@ -23,15 +23,6 @@ namespace SeleniumCSharp
         [SetUp]
         public void Initialize()
         {
-            /*
-             PropertiesCollection.driver = new ChromeDriver();
-
-             //Navigate to execute automation Page
-             PropertiesCollection.driver.Navigate().GoToUrl("https://demosite.executeautomation.com/Login.html");
-
-             PropertiesCollection.driver.Manage().Window.Maximize();
-            */
-
             driver = new ChromeDriver();
 
             driver.Navigate().GoToUrl("https://demosite.executeautomation.com/Login.html");
@@ -41,31 +32,25 @@ namespace SeleniumCSharp
             Console.WriteLine("Opened and maximized execute automation selenium test site webpage.");
         }
 
-
         [Test]
         [Obsolete]
         public void ExecuteTest()
         {
             //Login to Application
-
-            //LoginPageObject pageLogin = new LoginPageObject();
             LoginPageObject pageLogin = new LoginPageObject(driver);
 
             EAPageObject pageEA = pageLogin.Login("execute", "pass_auto");
 
             pageEA.FillUserForm("BP", "Bishal", "Programmer");
 
-            //logging
+            //logging in Console
             Console.WriteLine("The test is executed.");
         }
-
 
         [TearDown]
         public void CleanUp()
         {
             Thread.Sleep(5000);
-
-            //PropertiesCollection.driver.Quit();
             driver.Quit();
 
             Console.WriteLine("The last opened browser is closed.");
