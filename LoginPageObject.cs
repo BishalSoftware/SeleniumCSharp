@@ -21,9 +21,7 @@ namespace SeleniumCSharp
 
         IWebElement btnLog => _driver1.FindElementByName("Login");
 
-
-        [Obsolete]
-        public EAPageObject Login(string userName, string password)
+        public void Login(string userName, string password)
         {
             //Setter
             txtUserN.EnterText(userName);
@@ -36,21 +34,6 @@ namespace SeleniumCSharp
             Thread.Sleep(5000);
             btnLog.SubmitExt();
             Thread.Sleep(5000);
-
-            /*
-            SeleniumSetMethods.EnterText(txtUserN, userName);
-            SeleniumSetMethods.EnterText(txtPass, password);
-
-            Console.WriteLine("The User Name is : " + SeleniumGetMethods.GetText(txtUserN));
-            Console.WriteLine("The Password is : " + SeleniumGetMethods.GetText(txtPass));
-
-            Thread.Sleep(5000);
-            SeleniumSetMethods.Submit(btnLog);
-            Thread.Sleep(5000);
-            */
-
-            //Return the page object
-            return new EAPageObject(_driver1);
         }
     }
 }

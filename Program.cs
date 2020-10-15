@@ -15,7 +15,6 @@ namespace SeleniumCSharp
     class Program
     {
         private RemoteWebDriver driver;
-
         static void Main(string[] args)
         {
         }
@@ -33,21 +32,16 @@ namespace SeleniumCSharp
         }
 
         [Test]
-        [Obsolete]
         public void ExecuteTest()
         {
-            // ExcelLib.PopulateInCollection("./data.xlsx");
-            ExcelLib.PopulateInCollection(@"C:\csharp\selenium_projects\SeleniumCSharp\data.xlsx");
-
-            //string userNa = ExcelLib.ReadData(1, "UserName");
-            //string passWo = ExcelLib.ReadData(1, "Password");
+            ExcelLib.PopulateInCollection("./data.xlsx");
 
             //Login to Application
             LoginPageObject pageLogin = new LoginPageObject(driver);
+            pageLogin.Login(ExcelLib.ReadData(1, "UserName"), ExcelLib.ReadData(1, "Password"));
 
-            EAPageObject pageEA = pageLogin.Login(ExcelLib.ReadData(1,"UserName"), ExcelLib.ReadData(1,"Password"));
-
-            pageEA.FillUserForm(ExcelLib.ReadData(1, "Initial"), ExcelLib.ReadData(1, "MiddleName"), ExcelLib.ReadData(1, "FirstName"));
+            EAPageObject pageEA = new EAPageObject(driver);
+            pageEA.FillUserForm(ExcelLib.ReadData(1, "Initial"), ExcelLib.ReadData(1, "FirstName"), ExcelLib.ReadData(1, "MiddleName"));
 
             //logging in Console
             Console.WriteLine("The test is executed.");
