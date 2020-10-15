@@ -36,12 +36,18 @@ namespace SeleniumCSharp
         [Obsolete]
         public void ExecuteTest()
         {
+            // ExcelLib.PopulateInCollection("./data.xlsx");
+            ExcelLib.PopulateInCollection(@"C:\csharp\selenium_projects\SeleniumCSharp\data.xlsx");
+
+            //string userNa = ExcelLib.ReadData(1, "UserName");
+            //string passWo = ExcelLib.ReadData(1, "Password");
+
             //Login to Application
             LoginPageObject pageLogin = new LoginPageObject(driver);
 
-            EAPageObject pageEA = pageLogin.Login("execute", "pass_auto");
+            EAPageObject pageEA = pageLogin.Login(ExcelLib.ReadData(1,"UserName"), ExcelLib.ReadData(1,"Password"));
 
-            pageEA.FillUserForm("BP", "Bishal", "Programmer");
+            pageEA.FillUserForm(ExcelLib.ReadData(1, "Initial"), ExcelLib.ReadData(1, "MiddleName"), ExcelLib.ReadData(1, "FirstName"));
 
             //logging in Console
             Console.WriteLine("The test is executed.");
